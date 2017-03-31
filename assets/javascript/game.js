@@ -38,7 +38,6 @@ if(numberOfGuesses !== 0){
         }else{
           numberOfGuesses--;
           updateNumberOfGuesses();
-          console.log(x);
         }
       }
 
