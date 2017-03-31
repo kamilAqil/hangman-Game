@@ -30,15 +30,16 @@ if(numberOfGuesses !== 0){
   // the user keys something
     document.onkeyup = function(event){
       var userEntry = event.key;
+      console.log(userEntry);
       var x;
       for (x in game ){
         if(game[x].innerHTML == userEntry){
           game[x].classList.remove('hide');
-          delete game[x];
-        }else{
-          numberOfGuesses--;
-          updateNumberOfGuesses();
         }
+      }
+      if(userEntry in game == false && userEntry!=="Meta"){
+        numberOfGuesses--;
+        updateNumberOfGuesses();
       }
 
   };
