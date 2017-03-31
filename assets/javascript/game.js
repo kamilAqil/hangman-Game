@@ -4,6 +4,7 @@
   var possibleWords = ["hacker","jazzed","pizzas","pajama","jicama","sphynx","jigsaw"];
 // User starts with 6 chances to guess a 6 letter word
   var numberOfGuesses = 6;
+  document.getElementById('triesLeft').innerHTML = numberOfGuesses;
 // add click event listener to resetButton
   var resetButton = document.getElementById('reset');
 
@@ -23,16 +24,26 @@ var game = {
   letterSix:document.getElementById('letterSix'),
 };
 
-// this is what happens when
-// the user keys something
-  document.onkeyup = function(event){
-    var userEntry = event.key;
-    console.log(userEntry);
-  // while number of guesses is not
-  // zero
-  console.log(numberOfGuesses);
-}
+// run the game numberOfGuesses times
+if(numberOfGuesses !== 0){
+  // this is what happens when
+  // the user keys something
+    document.onkeyup = function(event){
+      var userEntry = event.key;
+      var x;
+      for (x in game ){
+        if(game[x].innerHTML == userEntry){
+          game[x].classList.remove('hide');
+          delete game[x];
+        }else{
+          numberOfGuesses--;
+          updateNumberOfGuesses();
+          console.log(x);
+        }
+      }
 
+  };
+}
 
 function pickWord(){
   var arrayIndex = Math.floor(Math.random()*7);
@@ -42,7 +53,7 @@ function pickWord(){
 function displayToGameBoard(wordToGuess){
   // split the word into an array
   // and display on screen
-  // and then add hide class 
+  // and then add hide class
   wordToGuess = wordToGuess.split("");
   document.getElementById('letterOne').innerHTML = wordToGuess[0];
   document.getElementById('letterTwo').innerHTML = wordToGuess[1];
@@ -57,4 +68,7 @@ function displayToGameBoard(wordToGuess){
   document.getElementById('letterFour').className+=" hide";
   document.getElementById('letterFive').className+=" hide";
   document.getElementById('letterSix').className+=" hide";
+}
+function updateNumberOfGuesses(){
+  document.getElementById('triesLeft').innerHTML = numberOfGuesses;
 }
