@@ -38,7 +38,6 @@
 #reset{
   position: absolute;
   top:40%;
-  right:0%;
 }
 
 #gameInfoPanel{
@@ -121,6 +120,10 @@
   font-size: 30px;
   display: inline;
 }
+
+/*.hide{
+  display:none;
+}*/
 
     @media screen
       and (min-width:768px)
