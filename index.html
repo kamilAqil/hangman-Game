@@ -8,29 +8,30 @@
   </head>
   <body>
     <!--MainContainer-->
-    <div class="container border">
+    <div class="container border" id="mainContainer">
       <!--menuRow-->
-      <div class="row border" id="menuRow">
+      <div class="row" id="menuRow">
         <!--logoCol-->
-        <div class="col-md-4 col-md-offset-3 border" id="logoCol">
-          Logo
+        <div class="col-md-4 col-xs-4 col-md-offset-3 col-xs-offset-3" id="logoCol">
+          <h1 id="logo">Guess Sum Werd</h1>
         </div>
         <!--buttonCol-->
-        <div class="col-md-3 border" id="buttonCol">
-
+        <div class="col-md-3 col-xs-3" id="buttonCol">
+          <button type="button" name="play" id="play" class="btn btn-default btn-lg">Play</button>
+          <button type="button" name="play" id="reset" class="btn btn-default btn-lg">Reset</button>
         </div>
       </div>
       <!--mainContetnRow-->
-      <div class="row border" id="mainContentRow">
+      <div class="row" id="mainContentRow">
         <!--gameInfoPanel-->
-        <div class="col-md-3 border" id="gameInfoPanel">
+        <div class="col-md-3 col-xs-3" id="gameInfoPanel">
           <!--triesLeftPanel-->
           <div class="panel panel-default" id="triesLeftPanel">
             <div class="panel-heading">
               <h3 class="panel-title">Tries Left</h3>
             </div>
             <div class="panel-body">
-              Panel content
+              <span id="triesLeft">Panel content</span>
             </div>
           </div>
           <!--lettersUsedPanel-->
@@ -39,7 +40,7 @@
               <h3 class="panel-title">Letters Used</h3>
             </div>
             <div class="panel-body">
-              Panel content
+              <p id="lettersUsedParagraph">letters used</p>
             </div>
           </div>
           <!--winsLossesPanel-->
@@ -48,22 +49,133 @@
               <h3 class="panel-title">Score</h3>
             </div>
             <div class="panel-body">
-              Panel content
+              <p>Wins:<span id="wins">0</span></p>
+              <p>Losses:<span id="losses">0</span></p>
             </div>
           </div>
         </div>
         <!--gameArea-->
-        <div class="col-md-9 border" id="gameArea">
-
+        <div class="col-md-9 col-xs-9" id="gameArea">
+          <!--pressAnyKeyRow-->
+          <div class="row" id="pressAnyKeyRow">
+            <div class="col-md-12 col-xs-12" id="pressAnyKeyCol">
+              <p id="pressAnyKeyP">Press Any Key to Continue !</p>
+            </div>
+          </div>
+          <!--gameBoardRow-->
+          <div class="row" id="gameBoardRow">
+            <!--gameBoard-->
+            <div class="col-md-10 col-xs-10 col-md-offset-1 col-xs-offset-1" id="gameBoard">
+              <!--rowOneAllGreen10Squares-->
+              <div class="row greenRow">
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 col-md-offset-1 col-xs-offset-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+              </div>
+              <!--playerRow-->
+              <div class="row greenRow">
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 col-md-offset-1 col-xs-offset-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border playerSquare" id="squareOne">
+                  <span class="answerLetter" id="letterOne">K</span>
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border playerSquare" id="squareTwo">
+                  <span class="answerLetter" id="letterTwo">A</span>
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border playerSquare" id="squareThree">
+                  <span class="answerLetter" id="letterThree">M</span>
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border playerSquare" id="squareFour">
+                  <span class="answerLetter" id="letterFour">I</span>
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border playerSquare" id="squareFive">
+                  <span class="answerLetter" id="letterFive">L</span>
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border playerSquare" id="squareSix">
+                  <span class="answerLetter" id="letterOne">S</span>
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+              </div>
+              <!--rowThreeAllGreen10Squares-->
+              <div class="row greenRow">
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 col-md-offset-1 col-xs-offset-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+                <!--greenSquare-->
+                <div class="col-md-1 col-xs-1 border greenSquare">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-
-
-
-
-
     <!--Javscript-->
     <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
