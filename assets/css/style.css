@@ -1,0 +1,48 @@
+.border{
+  border: 1px solid black;
+}
+
+#menuRow{
+  height: 200px;
+}
+
+#mainContentRow{
+  height: 600px;
+}
+
+#logoCol{
+  height: 100%;
+}
+
+#buttonCol{
+  height: 100%;
+}
+
+#gameInfoPanel{
+  height: 100%;
+  position: relative;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#gameArea{
+  height: 100%;
+}
+
+#triesLeftPanel{
+  width: 100%;
+  height:33%;
+  margin-bottom: 0;
+}
+
+#lettersUsedPanel{
+  width: 100%;
+  height:33%;
+  margin-bottom: 0;
+}
+
+#winsLossesPanel{
+  width: 100%;
+  height:34%;
+  margin-bottom: 0;
+}
