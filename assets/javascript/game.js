@@ -2,7 +2,10 @@
 // these will be used as the words
 // to guess in the game
   var possibleWords = ["hacker","jazzed","pizzas","pajama","jicama","sphynx","jigsaw"];
+  console.log(possibleWords);
   var lettersUsed = [];
+  var wins = 0;
+  var losses;
 // User starts with 6 chances to guess a 6 letter word
   var numberOfGuesses = 6;
   document.getElementById('triesLeft').innerHTML = numberOfGuesses;
@@ -18,6 +21,14 @@
 //create a gameBoard object
 var gameBoard = {
   letters:{
+    letterOne:document.getElementById('letterOne').innerHTML,
+    letterTwo:document.getElementById('letterTwo').innerHTML,
+    letterThree:document.getElementById('letterThree').innerHTML,
+    letterFour:document.getElementById('letterFour').innerHTML,
+    letterFive:document.getElementById('letterFive').innerHTML,
+    letterSix:document.getElementById('letterSix').innerHTML
+  },
+  lettersToAppend:{
     letterOne:document.getElementById('letterOne'),
     letterTwo:document.getElementById('letterTwo'),
     letterThree:document.getElementById('letterThree'),
@@ -26,10 +37,10 @@ var gameBoard = {
     letterSix:document.getElementById('letterSix')
   }
 };
-var lettersToGuessArray = [gameBoard["letters"]["letterOne"].innerHTML,gameBoard["letters"]["letterTwo"].innerHTML,
-                          gameBoard["letters"]["letterThree"].innerHTML,gameBoard["letters"]["letterFour"].innerHTML,
-                          gameBoard["letters"]["letterFive"].innerHTML,gameBoard["letters"]["letterSix"].innerHTML,];
-console.log(lettersToGuessArray);
+var lettersToGuessArray = [gameBoard["lettersToAppend"]["letterOne"].innerHTML,gameBoard["lettersToAppend"]["letterTwo"].innerHTML,
+                          gameBoard["lettersToAppend"]["letterThree"].innerHTML,gameBoard["lettersToAppend"]["letterFour"].innerHTML,
+                          gameBoard["lettersToAppend"]["letterFive"].innerHTML,gameBoard["lettersToAppend"]["letterSix"].innerHTML,];
+// console.log(lettersToGuessArray);
 // if numberOfGuesses is not 0
 // allow the user to play the round
 if(numberOfGuesses !== 0){
@@ -37,12 +48,19 @@ if(numberOfGuesses !== 0){
     // value entered by the user
     document.onkeyup = function(event){
       var userEntry = event.key;
+      console.log('numberOfGuesses:'+ numberOfGuesses);
+      console.log('lettersToGuess: '+lettersToGuessArray.length);
       if(userEntry!=="Meta"){
         lettersUsed.push(userEntry);
       }
-      console.log(lettersUsed);
-      document.getElementById('lettersUsedParagraph').innerHTML = lettersUsed;
-      console.log(userEntry);
+
+      // first check if userEntry is in Array
+      // if it isnt decrease number of tries by 1
+      if(lettersToGuessArray.indexOf(userEntry) == -1 && userEntry !=="Meta"){
+        console.log('entry not in puzzle');
+        numberOfGuesses -= 1;
+        updateNumberOfGuesses();
+      }
       // for every letter on the game board letters object
       // if the userEntry is == to the letter
       // on the gameBoard remove the hide class
@@ -51,9 +69,9 @@ if(numberOfGuesses !== 0){
       var x;
       for (x in gameBoard.letters ){
         // if the userEntry exits in the gameBoard
-        if(gameBoard.letters[x].innerHTML == userEntry){
+        if(gameBoard.letters[x] == userEntry){
           // remove the hide class on gameBoardLetter
-          gameBoard.letters[x].classList.remove('hide');
+          gameBoard.lettersToAppend[x].classList.remove('hide');
           // get indexToDelete and delete letter from lettersToGuessArray
           var indexToDelete = lettersToGuessArray.indexOf(userEntry);
           lettersToGuessArray.splice(indexToDelete,1);
@@ -64,17 +82,15 @@ if(numberOfGuesses !== 0){
           }
         }
       }
-      console.log(lettersToGuessArray);
-      if(userEntry in gameBoard == false && userEntry!=="Meta"){
-        numberOfGuesses--;
-        updateNumberOfGuesses();
-        // if number of Guesses = 0
-        // run the lose function
-        if (numberOfGuesses==0){
-          lose();
-        }
+      // if the user runs out of numberOfGuesses then run
+      // lose function
+      if(numberOfGuesses <= 0){
+        lose();
       }
-  };
+      document.getElementById('lettersUsedParagraph').innerHTML = lettersUsed;
+      console.log(lettersToGuessArray);
+  }
+
 }
 
 function pickWord(){
@@ -82,7 +98,7 @@ function pickWord(){
   // console.log(arrayIndex);
   wordToGuess = possibleWords[arrayIndex];
 }
-function displayToGameBoard(wordToGuess){
+function displayToGameBoard(){
   // split the word into an array
   // and display on screen
   // and then add hide class
@@ -107,7 +123,69 @@ function updateNumberOfGuesses(){
 
 function win(){
   console.log('you win!');
+  flashWinMessage();
+   updateWins();
+   resetTryCounter();
+   clearBoard();
+   removeWordToGuessFromPossibleWords();
+   pickWord();
+   console.log(wordToGuess);
+   displayToGameBoard();
+   var gameBoard = {
+     letters:{
+       letterOne:document.getElementById('letterOne').innerHTML,
+       letterTwo:document.getElementById('letterTwo').innerHTML,
+       letterThree:document.getElementById('letterThree').innerHTML,
+       letterFour:document.getElementById('letterFour').innerHTML,
+       letterFive:document.getElementById('letterFive').innerHTML,
+       letterSix:document.getElementById('letterSix').innerHTML
+     },
+     lettersToAppend:{
+       letterOne:document.getElementById('letterOne'),
+       letterTwo:document.getElementById('letterTwo'),
+       letterThree:document.getElementById('letterThree'),
+       letterFour:document.getElementById('letterFour'),
+       letterFive:document.getElementById('letterFive'),
+       letterSix:document.getElementById('letterSix')
+     }
+   };
+   var lettersToGuessArray = [gameBoard["lettersToAppend"]["letterOne"].innerHTML,gameBoard["lettersToAppend"]["letterTwo"].innerHTML,
+                             gameBoard["lettersToAppend"]["letterThree"].innerHTML,gameBoard["lettersToAppend"]["letterFour"].innerHTML,
+                             gameBoard["lettersToAppend"]["letterFive"].innerHTML,gameBoard["lettersToAppend"]["letterSix"].innerHTML,];
+  console.log(lettersToGuessArray);
 }
 function lose(){
   console.log('you lose!');
+  // flashLoseMessage();
+  // setTimout(updateLosses(),3000);
+  // resetTryCounter();
+  // clearBoard();
+  // pickWord();
+  // displayWord(wordToGuess);
+}
+
+function flashWinMessage(){
+  document.getElementById('pressAnyKeyP').innerHTML = "YOU WIN!!!"
+}
+function updateWins(){
+  wins += 1;
+  document.getElementById('wins').innerHTML = wins;
+}
+function resetTryCounter(){
+  numberOfGuesses = 6;
+  updateNumberOfGuesses();
+}
+function clearBoard(){
+  document.getElementById('letterOne').innerHTML = "";
+  document.getElementById('letterTwo').innerHTML = "";
+  document.getElementById('letterThree').innerHTML = "";
+  document.getElementById('letterFour').innerHTML = "";
+  document.getElementById('letterFive').innerHTML = "";
+  document.getElementById('letterSix').innerHTML = "";
+}
+function removeWordToGuessFromPossibleWords(){
+  // remove wordToGuess from possibleWords array
+  var indexToRemove = possibleWords.indexOf(wordToGuess);
+  possibleWords.splice(indexToRemove,1)
+  console.log(possibleWords);
 }
