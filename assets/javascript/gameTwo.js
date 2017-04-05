@@ -13,6 +13,8 @@ var game = {
     "pieceSix":document.getElementById("letterSix")
   },
   // fill an array with 6 letter words
+  //  (test array)
+  //"possibleWords":["jazzed"],
   "possibleWords" : ["hacker","jazzed","pizzas","pajama","jicama","sphynx","jigsaw"],
   // create variables for wins losses, triesLeft and lettersToGuess
   // these will be tracked and updated to the screen
@@ -106,27 +108,23 @@ var game = {
       // game piece.
       for(element in game.board){
         if (userEntry == game.board[element].innerHTML && userEntry !== "Meta"){
-          console.log("same letter");
+          // console.log("same letter");
           game.board[element].classList.remove("hide");
+          // if userEntry is in lettersToGuess
+          // delete the letter from the Array of
+          // lettersToGuess
+          if(game.lettersToGuess.indexOf(userEntry)>-1){
+            var indexToDeleteFromArray = game.lettersToGuess.indexOf(userEntry);
+            game.lettersToGuess.splice(indexToDeleteFromArray,1);
+            console.log(game.lettersToGuess);
+          }
+                // if letterstoGuess == 0 then run win()
+                if(game.lettersToGuess.length == 0){
+                  game.win();
+                }
+
         }
       }
-
-      // for each element in the lettersToGuess array
-      // if the element is == to the user entry pop
-      // that element
-      game.lettersToGuess.forEach(function(element){
-        if (element == userEntry){
-          var indexToDelete = game.lettersToGuess.indexOf(element);
-          game.lettersToGuess.splice(indexToDelete,1);
-          console.log(game.lettersToGuess.length);
-          // if letterstoGuess == 0 then run win()
-          if(game.lettersToGuess.length == 0){
-            game.win();
-          }
-        }
-      });
-      console.log(game.lettersToGuess);
-
 
     };  // end of keup function
 
