@@ -20,6 +20,7 @@ var game = {
   // these will be tracked and updated to the screen
   // for the user
   "lettersToGuess" : [],
+  "":[],
   "wins" : 0,
   "losses" : 0,
   "triesLeft" : 6,
@@ -79,14 +80,13 @@ var game = {
       // console.log(userEntry);
 
 
-
+      // if userEntry !== "Meta"
       // push the letter entered to the
       // letters used array
-      lettersUsedArray.push(userEntry);
-
-      // console.log(lettersUsedArray);
-      // console.log(game.lettersToGuess);
-
+      if(userEntry !== "Meta"){
+        lettersUsedArray.push(userEntry);
+        document.getElementById("lettersUsedParagraph").innerHTML = lettersUsedArray;
+      }
       // if userEntry is not in lettersToGuess
       // reduce triesLeft by one then
       // update tries left
@@ -97,6 +97,7 @@ var game = {
         if (game.triesLeft == 0){
           console.log("you lose!");
           game.lose();
+          lettersUsedArray = [];
           // reset tries left
           game.triesLeft = 6;
           game.updateTriesLeft();
@@ -121,6 +122,7 @@ var game = {
                 // if letterstoGuess == 0 then run win()
                 if(game.lettersToGuess.length == 0){
                   game.win();
+                  lettersUsedArray = [];
                 }
 
         }
@@ -143,6 +145,7 @@ var game = {
     game.losses += 1;
 
     document.getElementById("losses").innerHTML = game.losses;
+    document.getElementById("lettersUsedParagraph").innerHTML = "";
   },// end of lose function
   "win": function(){
     console.log("you win!");
@@ -164,7 +167,7 @@ var game = {
     game.pickRandomWord();
     game.displayRandomWord();
     // which will reset the lettersToGuess array
-
+    document.getElementById("lettersUsedParagraph").innerHTML = "";
 
   },//end of win function
 };// end of game object
