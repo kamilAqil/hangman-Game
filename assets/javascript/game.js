@@ -20,6 +20,7 @@
   displayToGameBoard(wordToGuess);
 //create a gameBoard object
 var gameBoard = {
+
   letters:{
     letterOne:document.getElementById('letterOne').innerHTML,
     letterTwo:document.getElementById('letterTwo').innerHTML,
