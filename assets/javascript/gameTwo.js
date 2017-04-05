@@ -42,6 +42,8 @@ var game = {
     // this can only run once the pickedRandomWord has
     // been assigned
   "displayRandomWord" : function(){
+      // if possibleWords is > than 0
+
       // split pickedRandomWord into an array and change
       // the html of the existing game pieces
       var wordArray = this.pickedRandomWord.split("");
@@ -170,6 +172,7 @@ var game = {
     document.getElementById("lettersUsedParagraph").innerHTML = "";
 
   },//end of win function
+
 };// end of game object
 
 
@@ -179,7 +182,9 @@ var game = {
 //
 
 // if the user clicks the reset button the page will refresh
-
+function pageReset () {
+  location.reload();
+}
 // this is a section for logs to test
 
 
@@ -188,8 +193,8 @@ var game = {
 
   game.pickRandomWord();
   game.displayRandomWord();
-  if(game.possibleWords.length > 0){
-    game.gamePlay();
-  }else{
+  if(game.possibleWords.length == 0){
     console.log("you beat the whole game");
+  }else{
+    game.gamePlay();
   }
