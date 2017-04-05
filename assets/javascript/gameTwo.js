@@ -122,8 +122,6 @@ var game = {
           // if letterstoGuess == 0 then run win()
           if(game.lettersToGuess.length == 0){
             game.win();
-            game.triesLeft = 6;
-            game.updateTriesLeft();
           }
         }
       });
@@ -152,6 +150,8 @@ var game = {
     console.log("you win!");
     game.wins += 1;
     // reset and update tries left
+    game.triesLeft = 6;
+    game.updateTriesLeft();
     // remove word from possible words
     console.log(game.pickedRandomWord);
     var indexToDelete = game.possibleWords.indexOf(game.pickedRandomWord);
